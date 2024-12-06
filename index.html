@@ -4,193 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>椛泥棒的个人博客</title>
-    <style>
-            * {
-                padding: 0;
-                margin: 0;
-                box-sizing: border-box;
-            }
-
-            body{
-                height: 1500px;
-                background-image: linear-gradient(to top, #4a6dce 0%, #9795f0 30%);
-
-            }
-
-
-            .shell{
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                position: relative;
-            }
-
-            header {
-                width: 100%;
-                height: 700px;
-                overflow: hidden;
-                clip-path: polygon(0 0,100% 0%,100% 100%,0 100%);
-                transition: clip-path 0.5s ease;
-
-            }
-
-            .img {
-                width: 100%;
-                height: 100%;
-                background: url(./img/7.jpg);
-                background-size: cover;
-                transform: scale(1);
-                transition: transform 0.5s ease;
-            }
-
-            .head{
-                height: 340px;
-                position: relative;
-                overflow: hidden;
-                z-index: 1;
-            }
-            .head::before{
-                content: '';
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                background: url("./img/bg2.jpg");
-                background-size: cover;
-                z-index: -1;
-                transform: skewY(-4deg);
-                transform-origin: 0 0;
-            }
-            
-            .cover {
-            position: absolute;
-            top: 190px;
-            left: 25px;
-            width: 220px;
-            z-index: 2;
-            border-radius: 500px;
-            border: 10px #fff solid;
-            box-shadow: 0 5px 10px #00000065;
-            }
-
-            .data {
-                padding: 190px 0 0 280px;
-                text-shadow: 0 0 20px #000;
-            }
-
-            .data .title1 {
-                color: white;
-                font-size: 50px;
-                font: 900 50px '';
-                margin-bottom: 5px;
-                position: relative;
-            }
-
-            .data .title1 span {
-                position: absolute;
-                top: 25px;
-                margin-left: 12px;
-                background: #ffe44c;
-                border-radius: 5px;
-                color: #000000;
-                font-size: 14px;
-                padding: 0px 4px;
-            }
-
-            .data .title1 span a {
-                text-decoration: none;
-            }
-
-            .data .title2 {
-                color: #fff;
-                font: 500 30px '';
-
-                position: relative;
-            }
-
-            .data .title2 span {
-                position: absolute;
-                top: 15px;
-                margin-left: 12px;
-                background: #ffe44c;
-                border-radius: 5px;
-                color: #000000;
-                font-size: 14px;
-                padding: 0px 4px;
-            }
-
-            .data .title2 span a {
-                text-decoration: none;
-            }
-
-            .foot {
-                line-height: 26px;
-                color: #444;
-            }
-
-            .tags {
-                padding-left: 30px;
-                padding-top: 100px;
-                width: 250px;
-                float: left;
-                text-align: center;
-            }
-
-            .tag {
-                background: rgb(149, 178, 255);
-                color: #fff;
-                border-radius: 10px;
-                padding: 3px 8px;
-                font-size: 14px;
-                margin-right: 4px;
-                line-height: 35px;
-                cursor: pointer;
-            }
-
-            .tag:hover {
-                background: #eee4ad;
-                color: #444;
-            }
-
-            .introduce {
-                padding: 25px 0 0 35px;
-                width: 480px;
-                float: left;
-            }
-
-
-            .shell2 {
-            box-shadow: #ffffff;
-            margin-top: 5%;
-            margin-left: calc((100%/3.4)*1);
-            width: 780px;
-            height: 580px;
-            background: #ffffff;
-            position: relative;
-            }
-            
-            .footer {
-                position: fixed;
-                left: 0px;
-                bottom: 0px;
-                width: 100%;
-                height: 50px;
-                background-color: #000000;
-                z-index: 9999;
-            }
-            
-        
-
-    </style>
+    <link rel="stylesheet" href="./css/main.css" type="text/css">
+    <script type="text/javascript" src="/js/main.js"></script>
 </head>
 
 <body>
-    <div class="shell">
+    <head2 class="head2">
+        <ul id="nav">
+            <!-- <li class="slide1"></li> -->
+            <li class="slidetop"></li>
+            <li><a href="#title">首页</a></li>
+            <li><a href="#xx">介绍</a></li>
+            <li><a href="#">项目</a></li>
+            <li><a href="#">联系方式</a></li>
+
+        </ul>
+    </head2>
+
+    <div id="title" class="shell">
         <header>
             <div class="img"></div>
         </header> 
     </div>
 
-    <div class="shell2">
+
+    <div class="shell2" >
         <img src="./img/tx.png" alt="" class="cover">
         <div class="head">
             <div class="data">
@@ -211,20 +49,20 @@
 
 
             </div>
-            <div class="introduce">
+            <div id="xx" class="introduce">
                 <p>
                     Hi！欢迎来到我的主页。
                     
                 </p>
             </div>
         </div>
-        <!-- <div class="footer">固定在底部</div> -->
+
     </div>
     
 
 
 </body>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 
     const header = document.querySelector('header');
@@ -253,6 +91,15 @@
         }
     }
     window.addEventListener('wheel',scrollHandler)
+
+    $("#nav a").on("mouseover", function () {
+        var position = $(this).parent().position();
+        var width = $(this).parent().width();
+        $("#nav .slidetop").css({ opacity: 1, left: +position.left, width: width }).addClass("squeeze");
+    });
+    $("#nav a").on("mouseout", function () {
+        $("#nav .slidetop").css({ opacity: 0 }).removeClass("squeeze");
+    });
 
 </script>
 </html>
